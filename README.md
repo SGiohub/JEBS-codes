@@ -11,7 +11,7 @@ The structure of the file assumes familiarity with the underlying philosophy of 
 (see Colombi, R., Giordano, S., & Cazzaro, M. (2014). hmmm: An R Package for Hierarchical Multinomial Marginal Models. Journal of Statistical Software, 59(11), 1–25. https://doi.org/10.18637/jss.v059.i11). 
 
 The Excel file Results.xls is designed to facilitate both the construction and interpretation of the model parameters.
-The file “output” contains the results. You can also use load("output") to move forward with your analysis by starting from the ready-to-use results.
+
 A file named “residuals” provides code for producing boxplots of residuals per strata.
 
 Files Rd are the help pages of the main functions of our code. They contain also examples (one with three variables). Use the preview option to read them as HTML documents.
