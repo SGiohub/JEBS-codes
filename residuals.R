@@ -1,5 +1,5 @@
 
-# load("output") it contains fitmodel, the output of the file "example_JEBS.R"
+# fitmodel is the output of the file "example_JEBS.R"
 # the following codes help us to create box-plots of the standardized residuals.
 
 fitmod<-fitmodel
@@ -91,4 +91,5 @@ boxplot.matrix(mat,col = c(scales::alpha("darkblue",1), scales::alpha("steelblue
                            scales::alpha("darkgreen",1)), 
                names=c("S Rep", "N Rep", "Ind", "N Demo", "S Demo"), main = "White-High",cex.names = 1.1, 
                cex.axis = 1.2, cex.lab = 2, cex.main = 1.5)
+
 
