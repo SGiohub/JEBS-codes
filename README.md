@@ -1,6 +1,6 @@
 The purpose of the “example_JEBS.R” file is to illustrate how to obtain the results reported in Section 6 of the paper: 
 Colombi, R., Giordano, S., & Tutz, G. (2021). A Rating Scale Mixture Model to Account for the Tendency to Middle and Extreme 
-Categories. Journal of Educational and Behavioral Statistics, 46(6), 682-716. 
+Categories. Journal of Educational and Behavioral Statistics, 46(6), 682-716. https://doi.org/10.3102/1076998621992554
 
 The source files “margmod.R” and “Uhmmm_mainsource.R” include the core routines for parameter estimation and for computing standard errors under different working assumptions. 
 These files also contain additional extensions that are not used in the paper.
