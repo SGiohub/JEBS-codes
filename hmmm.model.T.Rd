@@ -159,11 +159,14 @@ names(data)
 
 # Questionnaire and data are at https://gssdataexplorer.norc.org/
 
-# with three variables, BE PATIENT!
-
 E1 <- as.factor(data$whtsdiff) #
 E2 <- as.factor(data$ethadapt) # 
-E5 <- as.factor(data$ethignor) #                       
+E5 <- as.factor(data$ethignor) #  
+
+# To simplify
+E1<-recode(E1,"c(1,2)=1;c(3)=2;c(4,5)=3")
+E2<-recode(E2,"c(1,2)=1;c(3)=2;c(4,5)=3")
+E5<-recode(E5,"c(1,2)=1;c(3)=2;c(4,5)=3")
 
 ############### Covariates ############################
 edu<-as.factor(data$edu)         # <= 13 is  1, > 13 is 2
@@ -171,10 +174,10 @@ race <- as.factor(data$race)    # 1 = other-black, 2 = white
 
 ## create dataframe
 y<-as.data.frame(cbind(E1,E2,E5,race,edu))
-ytab<-matrix(table(y),125,4)
+ytab<-matrix(table(y),27,4)
 # ytab is a tabular data structure, one column for each stratum given by combinations of covariate levels
 remove(dati)
-rc<-5  # num. categories for each response
+rc<-2  # num. categories for each response
 
 labelrisp<-c("R1","R2","R3")
 labelfac<-c("G","C")       
@@ -197,7 +200,7 @@ marg <- marg.list(c("l-m-m", "m-l-m", "m-m-l", "l-l-m", "l-m-l", "m-l-l", "l-l-l
 # parallel covariate effect, association to be specified through INDIP in hmmm.model.T
 Formula<-list(R1=~LA*G+LA*C+LA*R1,R2=~LB*G+LB*C+LB*R2,R3=~LC*G+LC*C+LC*R3) 
 
-modelobs<-hmmm.model.T(marg,lev=c(5,5,5), names=labelrisp, strata=str,
+modelobs<-hmmm.model.T(marg,lev=c(3,3,3), names=labelrisp, strata=str,
                        Formula=Formula,
                        fnames=labelfac, replace=TRUE,
                        INDIP=list("CST4","CST4","CST4"), 
@@ -219,9 +222,9 @@ fit<-Uhmmm.MLfit(ytab,
                  method.inv="Newton",
                  numeric=FALSE, 
                  print.level=1, 
-                 finalHessian=FALSE, 
-                 iterlim=300, 
-                 NMiter=300,
+                 finalHessian=TRUE, 
+                 iterlim=30, 
+                 NMiter=30,
                  recalc=TRUE,
                  tol=1e-12,
                  startmth="NM", 
@@ -231,7 +234,6 @@ fit<-Uhmmm.MLfit(ytab,
 
 # Estimates and Standard Errors
 fit$vecpar
-
 
 ## The function is currently defined as
 function (marg, lev, names, Formula = NULL, strata = 1, fnames = NULL, 
